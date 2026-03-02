@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider de Baskets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        .slider-container {
+            width: 300px;
+            margin: 50px auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        /* Animation de saut infinie */
+        .slide img {
+            width: 200px;
+            height: auto;
+            animation: jump 0.4s ease-in-out infinite alternate;
+        }
+
+        @keyframes jump {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+
+        /* Numéros de sélection */
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            margin: 5px;
+            background-color: #007BFF;
+            color: white;
+            font-size: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Choisis ta Basket !</h2>
+
+    <div class="slider-container">
+        <div class="slides">
+            <div class="slide"><img src="basket1.jpg" alt="Basket 1"></div>
+            <div class="slide"><img src="basket2.jpg" alt="Basket 2"></div>
+            <div class="slide"><img src="basket3.jpg" alt="Basket 3"></div>
+            <div class="slide"><img src="basket4.jpg" alt="Basket 4"></div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <span class="btn" onclick="changeSlide(0)">1</span>
+        <span class="btn" onclick="changeSlide(1)">2</span>
+        <span class="btn" onclick="changeSlide(2)">3</span>
+        <span class="btn" onclick="changeSlide(3)">4</span>
+    </div>
+
+    <script>
+        function changeSlide(index) {
+            const slides = document.querySelector(".slides");
+            slides.style.transform = `translateX(${-index * 300}px)`;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!--
+
+1)-Quel est le rôle de @keyframes jump ?
+
+@keyframes jump permet de créer une animation en CSS.
+
+Dans le code :
+
+@keyframes jump {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-20px); }
+}
+
+À 0%, l’image est à sa position normale.
+
+À 100%, l’image monte de 20px vers le haut.
+
+Grâce à la propriété :
+
+animation: jump 0.4s ease-in-out infinite alternate;
+
+L’image :
+
+Monte
+
+Redescend
+
+Recommence en boucle
+
+Donc les baskets sautent en permanence.
+
+2)-
+ Quel est le rôle de la fonction changeSlide(index) ?
+
+
+La fonction changeSlide(index) permet d’afficher une image spécifique lorsque l’utilisateur clique sur un numéro.
+
+function changeSlide(index) {
+    const slides = document.querySelector(".slides");
+    slides.style.transform = `translateX(${-index * 300}px)`;
+}
+
+Explication :
+
+index représente le numéro de l’image.
+
+translateX() déplace les images horizontalement.
+
+-index * 300 permet de déplacer de 300px à chaque changement.
+
+
+3)-
+Pourquoi le défilement est-il fluide ?
+ Réponse :
+
+Le défilement est fluide grâce à la propriété CSS :
+
+transition: transform 0.5s ease-in-out;
+
+Quand JavaScript change la position des images, CSS applique une animation douce de 0.5 seconde.
+
+ Sans cette ligne, le changement serait instantané et non animé.
+
+  4)-
+ Quel est le lien entre :
+
+300 dans JavaScript
+
+width: 300px; dans .slider-container
+
+min-width: 100%; dans .slide
+
+Réponse :
+
+Le lien est que 300px est la largeur d’une seule image visible.
+
+.slider-container a une largeur de 300px.
+
+.slide a min-width: 100%, donc chaque slide occupe 100% du conteneur donc 300px.
+
+Dans JavaScript, on déplace les images de 300px à chaque clic.
+
+Donc la valeur 300 correspond exactement à la largeur d’une image.
+
+Si on change la largeur du slider (exemple 400px), il faut aussi changer la valeur dans JavaScript.
+
+  5)-
+ Pourquoi utilise-t-on overflow: hidden; ?
+ Réponse :
+
+overflow: hidden;
+
+Cette propriété cache les parties des images qui dépassent du conteneur.
+
+ Cela permet d’afficher une seule image à la fois.
+
+ 6)-
+ Comment fonctionne le slider en général ?
+ Réponse :
+
+Les images sont alignées horizontalement grâce à display: flex.
+
+Le conteneur affiche seulement 300px.
+
+Les autres images sont cachées.
+
+Quand on clique sur un numéro :
+
+JavaScript déplace les images.
+
+CSS anime le mouvement.
+
+Les images sautent grâce à l’animation jump.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
